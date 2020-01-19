@@ -45,7 +45,8 @@ router.post("/", upload.single("file"), verifyInput, async function(
     const token = jwt.sign({ id: newFileUpload.id }, "urlExpiry", {
       expiresIn: Number(req.body.expiry) || 86400
     });
-    const fileUrl = APP_URL + "uploads/" + newFileUpload.id + `?token=${token}`;
+    const fileUrl =
+      APP_URL + "api/uploads/" + newFileUpload.id + `?token=${token}`;
     res.status(201).json({ url: fileUrl });
   } catch (err) {
     res.status(400).json({ message: err.message });

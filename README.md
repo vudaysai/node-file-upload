@@ -1,2 +1,3 @@
-# sample-node-app
-Sample Nodejs Application with CRUD REST APIs
+# sample-pastbin-app
+
+Sample Nodejs Application.
