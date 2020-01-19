@@ -62,6 +62,7 @@ async function verifyInput(req, res, next) {
   if (req.body.expiry && isNaN(Number(req.body.expiry))) {
     return res.status(400).json({ message: "Invalid expiry input" });
   }
+  next();
 }
 
 async function getUploadedFile(req, res, next) {

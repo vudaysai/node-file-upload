@@ -19,6 +19,6 @@ db.once("open", () => console.log("connected to database"));
 app.use(express.json());
 
 const fileUploadRouter = require("./routes/upload");
-app.use("api/uploads", fileUploadRouter);
+app.use("/api/uploads", fileUploadRouter);
 
 app.listen(3000, () => console.log("server started"));
