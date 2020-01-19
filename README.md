@@ -1,6 +1,6 @@
 # PasteBin sample
 
-TODO: # simple pastbin applicaton developed using Nodejs, Express, MongoDB and Docker.
+## Sample PasteBin applicaton developed using Nodejs, Express, MongoDB and Docker.
 
 ## Installation
 
