@@ -1,14 +1,11 @@
 const express = require("express");
 const router = express.Router();
-var multer = require("multer");
 var path = require("path");
+var multer = require("multer");
 const APP_URL = "http://localhost:3000/";
-
-const FileUpload = require("../models/FileUpload");
-
 var jwt = require("jsonwebtoken");
 
-var multer = require("multer");
+const FileUpload = require("../models/FileUpload");
 
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -27,7 +24,7 @@ router.get("/", (req, res) => {
   res.send("Sample paste bin app");
 });
 
-router.post("/", upload.single("file"), verifyInput, async function(
+router.post("/", upload.single("file"), verifyInput, async function (
   req,
   res,
   next
@@ -45,8 +42,7 @@ router.post("/", upload.single("file"), verifyInput, async function(
     const token = jwt.sign({ id: newFileUpload.id }, "urlExpiry", {
       expiresIn: Number(req.body.expiry) || 86400
     });
-    const fileUrl =
-      APP_URL + "api/uploads/" + newFileUpload.id + `?token=${token}`;
+    const fileUrl = APP_URL + "api/uploads/" + newFileUpload.id + `?token=${token}`;
     res.status(201).json({ url: fileUrl });
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -58,14 +54,14 @@ router.get("/:id", getUploadedFile, (req, res) => {
   res.download(file);
 });
 
-async function verifyInput(req, res, next) {
+async function verifyInput (req, res, next) {
   if (req.body.expiry && isNaN(Number(req.body.expiry))) {
     return res.status(400).json({ message: "Invalid expiry input" });
   }
   next();
 }
 
-async function getUploadedFile(req, res, next) {
+async function getUploadedFile (req, res, next) {
   try {
     jwt.verify(req.query.token, "urlExpiry");
   } catch (err) {

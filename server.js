@@ -1,4 +1,3 @@
-require("dotenv").config();
 var multer = require("multer");
 
 const express = require("express");
